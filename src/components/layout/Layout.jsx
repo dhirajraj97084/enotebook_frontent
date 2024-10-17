@@ -1,29 +1,30 @@
-import React from 'react'
-import TopNavbar from '../topNavbar/TopNavbar'
-import SideBar from '../sideBar/SideBar'
 import Navbar from '../navbar/Navbar'
+import SideBar from '../sideBar/SideBar'
+import TopNavbar from '../topNavbar/TopNavbar'
+
 
 function Layout({ children }) {
     return (
         <div>
-            <div className="content">
-                {/* for mobiles */}
-                <Navbar/>
-                <div className="div lg:hidden">
-                    <TopNavbar />
-                </div>
-                {/* for desktop */}
-                <div className="main">
-                    <div className="hidden md:block flex-none w-72 h-[42rem] bg-cyan-200">
-                        <SideBar />
+            <Navbar/>
+            {/* Mobile Navbar hidden on desktop  */}
+            <div className=" lg:hidden">
+                <TopNavbar />
+            </div>
+            
+            <div class="max-h-screen flex ">
+                {/* Sidebar hidden on mobile  */}
+                <nav class=" w-72 flex-none ... hidden md:block">
+                    <SideBar />
+                </nav>
+
+                {/* main content  */}
+                <main class="flex-1 min-w-0 overflow-auto ...">
+                    <div className=" flex  justify-center">
+                        {children}
                     </div>
-                    {/* main content  */}
-                    <main class="flex-1 min-w-0 overflow-auto ...">
-                        <div className=" flex  justify-center">
-                            {children}
-                        </div>
-                    </main>
-                </div>
+                </main>
+
             </div>
         </div>
     )
